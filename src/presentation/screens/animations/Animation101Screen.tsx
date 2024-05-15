@@ -1,34 +1,11 @@
 
 import { StyleSheet, Text, View, Pressable, Animated, Easing } from 'react-native';
 import { colors } from '../../../config/theme/theme';
-import { useRef } from 'react';
+import { useAnimation } from '../../hooks/useAnimation';
 
 export const Animation101Screen = () => {
 
-    const animatedOpacity = useRef( new Animated.Value(0) ).current;
-    const animatedTop = useRef( new Animated.Value(-150) ).current;
-
-    const fadeIn = () => {
-        Animated.timing( animatedTop, {
-            toValue:0, 
-            duration:700, 
-            useNativeDriver:true,
-            easing: Easing.elastic(1) 
-        }).start( () => console.log('Animation Move Ended'));
-        Animated.timing( animatedOpacity, {toValue:1, duration:300, useNativeDriver:true } ).start( () => console.log('Animation Ended'));
-    }
-
-    const fadeOut = () => {
-        Animated.timing( animatedOpacity, {toValue:0, duration:300, useNativeDriver:true } ).start( () => console.log('Animation Ended at 0'));
-        // Animated.timing( animatedOpacity, {toValue:0, duration:300, useNativeDriver:true } ).start( () => animatedTop.resetAnimation());
-        // animatedTop.resetAnimation();
-        Animated.timing( animatedTop, {
-            toValue:-150, 
-            duration:700, 
-            useNativeDriver:true,
-            easing: Easing.elastic(1) 
-        }).start( () => console.log('Animation Move Ended'));
-    }
+    const { fadeIn, fadeOut, startMovingTopPosition, animatedOpacity, animatedTop } = useAnimation();
 
     return (
         <View style={ styles.container }>
@@ -40,10 +17,16 @@ export const Animation101Screen = () => {
                 }]
             }]} />
             
-            <Pressable onPress={ () => fadeIn() } style={{ ...styles.button, marginTop:10 }}>
+            <Pressable onPress={ () => {
+                fadeIn({});
+                startMovingTopPosition({ initialPosition:-150, easingType: Easing.elastic(1), duration:700 });
+            }} style={{ ...styles.button, marginTop:10 }}>
                 <Text style={{ ...styles.buttonText }}>FadeIn</Text>
             </Pressable>
-            <Pressable onPress={ fadeOut } style={{ ...styles.button, marginTop:10 }}>
+            <Pressable onPress={ () => {
+                fadeOut({});
+                startMovingTopPosition({ initialPosition:0, toValue:-150, easingType: Easing.elastic(1), duration:700 });
+            }} style={{ ...styles.button, marginTop:10 }}>
                 <Text style={{ ...styles.buttonText }}>FadeOut</Text>
             </Pressable>
 
