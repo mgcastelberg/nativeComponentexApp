@@ -1,9 +1,10 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from '../screens/home/HomeScreen';
+import { Animation101Screen } from '../screens/animations/Animation101Screen';
 
 export type RootStackParams = {
     Home: undefined;
-    Details: { movieId: number };
+    Animation101Screen: undefined;
 }
 
 const Stack = createStackNavigator<RootStackParams>();
@@ -16,7 +17,7 @@ export const NavigationStack = () => {
         }}
     >
       <Stack.Screen name="Home" component={HomeScreen} />
-      {/* <Stack.Screen name="Details" component={DetailsScreen} /> */}
+      <Stack.Screen name="Animation101Screen" component={Animation101Screen} />
     </Stack.Navigator>
   );
 }

@@ -15,10 +15,10 @@ interface Props {
 
 export const MenuItem = ( { name, icon, component, isFirst = false, isLast = false }:Props) => {
 
-    const navigation = useNavigation();
+    const navigation = useNavigation<any>();
 
     return (
-        <Pressable onPress={ () => console.log('click/tap') }>
+        <Pressable onPress={ () => navigation.navigate( component ) }>
             <View style={{ 
                 ...styles.container,
                 backgroundColor: colors.cardBackground,
