@@ -1,24 +1,44 @@
 
-import { StyleSheet, Text, View, Pressable, Animated } from 'react-native';
+import { StyleSheet, Text, View, Pressable, Animated, Easing } from 'react-native';
 import { colors } from '../../../config/theme/theme';
 import { useRef } from 'react';
 
 export const Animation101Screen = () => {
 
     const animatedOpacity = useRef( new Animated.Value(0) ).current;
+    const animatedTop = useRef( new Animated.Value(-150) ).current;
 
     const fadeIn = () => {
+        Animated.timing( animatedTop, {
+            toValue:0, 
+            duration:700, 
+            useNativeDriver:true,
+            easing: Easing.elastic(1) 
+        }).start( () => console.log('Animation Move Ended'));
         Animated.timing( animatedOpacity, {toValue:1, duration:300, useNativeDriver:true } ).start( () => console.log('Animation Ended'));
     }
 
     const fadeOut = () => {
         Animated.timing( animatedOpacity, {toValue:0, duration:300, useNativeDriver:true } ).start( () => console.log('Animation Ended at 0'));
+        // Animated.timing( animatedOpacity, {toValue:0, duration:300, useNativeDriver:true } ).start( () => animatedTop.resetAnimation());
+        // animatedTop.resetAnimation();
+        Animated.timing( animatedTop, {
+            toValue:-150, 
+            duration:700, 
+            useNativeDriver:true,
+            easing: Easing.elastic(1) 
+        }).start( () => console.log('Animation Move Ended'));
     }
 
     return (
         <View style={ styles.container }>
 
-            <Animated.View style={[styles.purpleBox, { opacity: animatedOpacity }]} />
+            <Animated.View style={[styles.purpleBox, { 
+                opacity: animatedOpacity, 
+                transform: [{
+                    translateY: animatedTop 
+                }]
+            }]} />
             
             <Pressable onPress={ () => fadeIn() } style={{ ...styles.button, marginTop:10 }}>
                 <Text style={{ ...styles.buttonText }}>FadeIn</Text>
