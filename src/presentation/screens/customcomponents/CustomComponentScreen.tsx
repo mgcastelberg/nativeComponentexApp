@@ -9,7 +9,7 @@ export const CustomComponentsScreen = () => {
         <CustomView style={{ marginTop:10, paddingHorizontal:10 }}>
             <Card>
                 <Text>
-                    SwitchScreen
+                    Custom Components
                 </Text>
                 <Button
                     text='Click Me'
