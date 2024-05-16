@@ -56,7 +56,12 @@ export const menuItems = [
   
   const uiMenuItems = [
     // 03- uiMenuItems
-    {
+      {
+        name: 'Custom Components',
+        icon: 'code-working-outline',
+        component: 'CustomComponentsScreen',
+      },
+      {
         name: 'Switches',
         icon: 'toggle-outline',
         component: 'SwitchScreen',
