@@ -6,6 +6,7 @@ import { Switch } from 'react-native-gesture-handler'
 import { useState } from 'react'
 import { CustomSwitch } from '../../components/ui/CustomSwitch'
 import { colors } from '../../../config/theme/theme'
+import { Separator } from '../../components/ui/Separator'
 
 export const SwitchScreen = () => {
 
@@ -31,6 +32,8 @@ export const SwitchScreen = () => {
                 />
             </Card>
 
+            <Separator space={5} />
+            
             <Card>
                 <CustomSwitch
                     isOn={ isEnabled }
@@ -39,6 +42,8 @@ export const SwitchScreen = () => {
                 />
             </Card>
 
+            <Separator />
+
             <Card>
                 <CustomSwitch
                     isOn={ state.isActive }
@@ -46,6 +51,9 @@ export const SwitchScreen = () => {
                     text= "¿Está activo?"
                 />
             </Card>
+
+            <Separator />
+
             <Card>
                 <CustomSwitch
                     isOn={ state.isHungry }
@@ -53,6 +61,9 @@ export const SwitchScreen = () => {
                     text= "¿Tiene hambre?"
                 />
             </Card>
+
+            <Separator />
+
             <Card>
                 <CustomSwitch
                     isOn={ state.isHappy }
