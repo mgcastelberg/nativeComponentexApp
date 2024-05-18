@@ -1,10 +1,12 @@
 
+import prompt from 'react-native-prompt-android';
 import { Alert, Text, View } from 'react-native'
 import { CustomView } from '../../components/ui/CustomView'
 import { Title } from '../../components/ui/Title'
 import { globalStyles } from '../../../config/theme/theme'
 import { Button } from '../../components/ui/Button'
 import { Separator } from '../../components/ui/Separator'
+import { showPrompt } from '../../../config/adapters/promp.adapters';
 
 export const AlertScreen = () => {
 
@@ -41,14 +43,16 @@ export const AlertScreen = () => {
         ]);
 
         // No funciona en aindroid
-        const showPrompt = () => {
-            Alert.prompt(
-                'Correo electronico',
-                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto natus',
-                (valor: string) => console.log(valor),
-                'secure-text',
-                'valor por defecto'
-            );
+        const onShowPrompt = () => {
+            showPrompt({
+                title: 'Hola Mundo',
+                subtitle: 'Lorem ipsum dolor sit amet consectetur adipisicing elite',
+                buttons: [
+                    {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
+                    {text: 'OK', onPress: (value:any) => console.log('OK Pressed, password: ' + value)},
+                ],
+                placeholder: 'Placeholder'
+            });
         }
     
 
@@ -72,7 +76,7 @@ export const AlertScreen = () => {
             
             <Button 
                 text="Alerta - Input"
-                onPress={ showPrompt }
+                onPress={ onShowPrompt }
             />
 
             <Separator/>
