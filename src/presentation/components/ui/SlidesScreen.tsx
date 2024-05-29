@@ -42,7 +42,7 @@ export const SlidesScreen = () => {
     const onScroll = (event:NativeSyntheticEvent<NativeScrollEvent>) => {
         const { contentOffset, layoutMeasurement } = event.nativeEvent;
         const currentIndex = Math.floor( contentOffset.x / layoutMeasurement.width );
-        console.log(currentIndex);
+        // console.log(currentIndex);
         // si esto es mayor a uno seteamos el currentIndex en caso contrario
         setcurrentSlideIndex( currentIndex > 0 ? currentIndex : 0);
     }
