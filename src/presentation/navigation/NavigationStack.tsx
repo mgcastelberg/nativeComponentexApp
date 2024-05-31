@@ -12,6 +12,8 @@ import { ModalScreen } from '../components/ui/ModalScreen';
 import { InfiniteScrollScreen } from '../components/ui/InfiniteScrollScreen';
 import { SlidesScreen } from '../components/ui/SlidesScreen';
 import { ChangeThemeScreen } from '../screens/theme/ChangeThemeScreen';
+import { useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
 
 export type RootStackParams = {
     Home: undefined;
@@ -32,10 +34,16 @@ export type RootStackParams = {
 const Stack = createStackNavigator<RootStackParams>();
 
 export const NavigationStack = () => {
+
+  const { colors } = useContext( ThemeContext );
+
   return (
     <Stack.Navigator
         screenOptions={{
-            headerShown: false
+            headerShown: false,
+            cardStyle:{
+              backgroundColor: colors.background
+            }
         }}
     >
       <Stack.Screen name="Home" component={HomeScreen} />

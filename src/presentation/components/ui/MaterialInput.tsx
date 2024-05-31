@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import { View, TextInput, Animated, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { ThemeContext } from '../../context/ThemeContext';
 
 interface MaterialInputProps {
   label: string;
@@ -37,6 +38,8 @@ const MaterialInput: React.FC<MaterialInputProps> = ({ label }) => {
     outputRange: [0, -15],
   });
 
+  const { colors } = useContext( ThemeContext );
+
   return (
     <View style={styles.container}>
       <TouchableWithoutFeedback onPress={() => inputRef.current?.focus()}>
@@ -46,7 +49,10 @@ const MaterialInput: React.FC<MaterialInputProps> = ({ label }) => {
       </TouchableWithoutFeedback>
       <TextInput
         ref={inputRef}
-        style={[styles.input, { borderBottomColor: isFocused ? 'blue' : 'gray' }]}
+        style={[styles.input, { 
+          borderBottomColor: isFocused ? 'blue' : 'gray',
+          color: colors.text,
+        }]}
         onFocus={handleFocus}
         onBlur={handleBlur}
         onChangeText={(value) => setText(value)}

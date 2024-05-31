@@ -4,6 +4,9 @@ import { globalStyles } from '../../../config/theme/theme';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Title } from '../../components/ui/Title';
 import { MenuItem } from '../../components/ui/MenuItem';
+import { useContext } from 'react';
+import { ThemeContext } from '../../context/ThemeContext';
+import { CustomView } from '../../components/ui/CustomView';
 // import { AirplaneIcon } from '../../icons/Icons'
 
 const animationMenuItems = [
@@ -80,7 +83,7 @@ export const menuItems = [
 
 export const HomeScreen = () => {
     return (
-        <View style={ globalStyles.mainContainer }>
+        <CustomView margin >
             <View style={ globalStyles.globalMargin }>
                 <ScrollView>
                     <Title text='Opciones del menú' safe />
@@ -89,7 +92,7 @@ export const HomeScreen = () => {
                             <MenuItem key={item.component} {...item} isFirst={ index === 0} isLast={ index === animationMenuItems.length -1}/>
                         ))
                     }
-                    <View style={{ marginTop:30}}/>
+                    <CustomView style={{ marginTop:30}}/>
                     {
                         uiMenuItems.map( (item,index) => (
                             <MenuItem key={item.component} {...item} isFirst={ index === 0} isLast={ index === uiMenuItems.length -1}/>
@@ -103,6 +106,6 @@ export const HomeScreen = () => {
                     }
                 </ScrollView>
             </View>
-        </View>
+        </CustomView>
     )
 }

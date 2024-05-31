@@ -2,13 +2,14 @@
 import { StyleSheet, Text, View, Pressable, Animated, Easing } from 'react-native';
 import { colors } from '../../../config/theme/theme';
 import { useAnimation } from '../../hooks/useAnimation';
+import { CustomView } from '../../components/ui/CustomView';
 
 export const Animation101Screen = () => {
 
     const { fadeIn, fadeOut, startMovingTopPosition, animatedOpacity, animatedTop } = useAnimation();
 
     return (
-        <View style={ styles.container }>
+        <CustomView style={ styles.container }>
 
             <Animated.View style={[styles.purpleBox, { 
                 opacity: animatedOpacity, 
@@ -30,7 +31,7 @@ export const Animation101Screen = () => {
                 <Text style={{ ...styles.buttonText }}>FadeOut</Text>
             </Pressable>
 
-        </View>
+        </CustomView>
     )
 }
 

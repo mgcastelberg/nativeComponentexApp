@@ -6,6 +6,7 @@ export interface ThemeColors {
   background: string;
   cardBackground: string;
   buttonTextColor: string;
+  buttonDanger: string,
 }
 
 export const colors: ThemeColors = {
@@ -15,6 +16,7 @@ export const colors: ThemeColors = {
   background: "#F3F2F7",
   cardBackground: "white",
   buttonTextColor: "white",
+  buttonDanger:"#CD5C5C",
 };
 
 export const ligthColors: ThemeColors = {
@@ -24,6 +26,7 @@ export const ligthColors: ThemeColors = {
   background: "#F3F2F7",
   cardBackground: "white",
   buttonTextColor: "white",
+  buttonDanger:"#CD5C5C",
 };
 
 export const darkColors: ThemeColors = {
@@ -33,18 +36,20 @@ export const darkColors: ThemeColors = {
   background: "#090909",
   cardBackground: "#2d2d2d",
   buttonTextColor: "white",
+  buttonDanger:"#800E13",
 };
 
 export const globalStyles = StyleSheet.create({
   title: {
     fontSize: 30,
     fontWeight: "bold",
-    color: colors.text,
+    // color: colors.text,
   },
   subTitle: {
     fontSize: 20,
     fontWeight: "bold",
-    color: colors.text,
+    backgroundColor:'none'
+    // color: colors.text,
   },
   input:{
     height:40,
@@ -52,12 +57,12 @@ export const globalStyles = StyleSheet.create({
     borderWidth:1,
     borderColor: 'rgba(0,0,0,0.3)',
     borderRadius: 10,
-    color: colors.text,
+    // color: colors.text,
     paddingHorizontal: 10
   },
   mainContainer: {
     flex: 1,
-    backgroundColor: colors.background,
+    // backgroundColor: colors.background,
   },
   globalMargin: {
     paddingHorizontal: 20,
@@ -65,13 +70,13 @@ export const globalStyles = StyleSheet.create({
   },
 
   btnPrimary: {
-    backgroundColor: colors.primary,
+    // backgroundColor: colors.primary,
     borderRadius: 10,
     padding: 10,
     alignItems: "center",
   },
   btnPrimaryText: {
-    color: colors.text,
+    // color: colors.text,
     fontSize: 16,
   },
 });

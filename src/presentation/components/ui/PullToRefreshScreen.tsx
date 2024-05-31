@@ -3,8 +3,9 @@ import { RefreshControl, Text, View } from 'react-native'
 import { Title } from './Title'
 import { ScrollView } from 'react-native-gesture-handler'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { useState } from 'react'
-import { colors, globalStyles } from '../../../config/theme/theme'
+import { useContext, useState } from 'react'
+import { globalStyles } from '../../../config/theme/theme'
+import { ThemeContext } from '../../context/ThemeContext'
 
 export const PullToRefreshScreen = () => {
 
@@ -16,6 +17,7 @@ export const PullToRefreshScreen = () => {
             setIsRefresing(false);
         }, 3000);
     }
+    const { colors } = useContext( ThemeContext );
 
     return (
         <ScrollView refreshControl={ 
@@ -26,7 +28,12 @@ export const PullToRefreshScreen = () => {
                     onRefresh={ onRefresh }
                 />
             }
-            style={ [ globalStyles.mainContainer, globalStyles.globalMargin]}
+            style={ [ 
+                globalStyles.mainContainer, 
+                globalStyles.globalMargin,
+                { backgroundColor: colors.background }
+
+            ]}
         >
         
                 <Title text='Pull to refresh'/>

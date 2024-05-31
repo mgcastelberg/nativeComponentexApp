@@ -20,11 +20,11 @@ export const ModalScreen = () => {
                 animationType='slide'
             >
                 <View style={{ flex:1, backgroundColor: 'rgba(0,0,0,0.1)'}}>
-                    <View style={{ paddingHorizontal: 10}}>
+                    <CustomView style={{ paddingHorizontal: 10}}>
                         <Title text='Modal Content' safe />
-                    </View>
-                    <View style={{ flex: 1 }}>
-                    </View>
+                    </CustomView>
+                    <CustomView style={{ flex: 1 }}>
+                    </CustomView>
                     <Button text='Cerrar Modal' onPress={ () => setIsVisible(false) }
                         styles={{ height:40, borderRadius:0 }}
                     ></Button>

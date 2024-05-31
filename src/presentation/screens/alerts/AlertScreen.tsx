@@ -1,15 +1,18 @@
 
-import prompt from 'react-native-prompt-android';
 import { Alert, Text, View } from 'react-native'
 import { CustomView } from '../../components/ui/CustomView'
 import { Title } from '../../components/ui/Title'
-import { globalStyles } from '../../../config/theme/theme'
+import { colors, globalStyles } from '../../../config/theme/theme'
 import { Button } from '../../components/ui/Button'
 import { Separator } from '../../components/ui/Separator'
 import { showPrompt } from '../../../config/adapters/promp.adapters';
+import { useContext, useState } from 'react';
+import { ThemeContext } from '../../context/ThemeContext';
+import CustomAlert from '../../components/ui/CustomAlert';
 
 export const AlertScreen = () => {
 
+    const {colors, isDark } = useContext( ThemeContext );
 
     const createTwoButtonAlert = () => {
 
@@ -21,6 +24,7 @@ export const AlertScreen = () => {
                 },
                 {text: 'OK', onPress: () => console.log('OK Pressed')},
             ],{
+                userInterfaceStyle: isDark ? 'dark' : 'light',
                 cancelable: true,
                 onDismiss(){
                     console.log('onDismiss');
@@ -40,7 +44,9 @@ export const AlertScreen = () => {
             style: 'cancel',
           },
           {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ]);
+        ],{
+            userInterfaceStyle: isDark ? 'dark' : 'light',
+        });
 
         // No funciona en aindroid
         const onShowPrompt = () => {
@@ -54,6 +60,17 @@ export const AlertScreen = () => {
                 placeholder: 'Placeholder'
             });
         }
+
+        // Custom alert thowModal
+        const [isAlertVisible, setAlertVisible] = useState(false);
+
+        const showAlert = () => {
+            setAlertVisible(true);
+        };
+
+        const closeAlert = () => {
+            setAlertVisible(false);
+        };
     
 
     return (
@@ -80,6 +97,26 @@ export const AlertScreen = () => {
             />
 
             <Separator/>
+
+            <Button text="Show Alert" onPress={ showAlert } />
+            <CustomAlert
+                isVisible={isAlertVisible}
+                onClose={closeAlert}
+                title="Alert Title"
+                message="My Alert Msg"
+                buttons={[
+                    {
+                      text: 'Cancel',
+                      onPress: () => console.log('Cancel Pressed'),
+                      color: colors.buttonDanger, // Optional: Customize button color
+                    },
+                    {
+                      text: 'OK',
+                      onPress: () => console.log('OK Pressed'),
+                      color: colors.primary, // Optional: Customize button color
+                    },
+                ]}
+            />
 
 
         </CustomView>

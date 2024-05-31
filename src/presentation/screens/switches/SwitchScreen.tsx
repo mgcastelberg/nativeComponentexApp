@@ -3,10 +3,11 @@ import { Text, View } from 'react-native'
 import { CustomView } from '../../components/ui/CustomView'
 import { Card } from '../../components/ui/Card'
 import { Switch } from 'react-native-gesture-handler'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { CustomSwitch } from '../../components/ui/CustomSwitch'
-import { colors } from '../../../config/theme/theme'
 import { Separator } from '../../components/ui/Separator'
+import { ThemeContext } from '../../context/ThemeContext'
+import { Title } from '../../components/ui/Title'
 
 export const SwitchScreen = () => {
 
@@ -19,8 +20,16 @@ export const SwitchScreen = () => {
         isHappy:true
     });
 
+    const { colors } = useContext( ThemeContext );
+
     return (
-        <CustomView style={{ marginTop:10, paddingHorizontal:10 }}>
+        
+        <CustomView margin>
+
+            <Title text='Switch' safe />
+
+            <Separator space={5} />
+
             <Card>
                 <Text style={{ color: colors.text }}> Componente Directo Native</Text>
                 <Switch
